@@ -21,13 +21,14 @@ contract Proxy is GSNRecipient {
     counter = OldCounter(_counter);
   }
 
-  function value() public view {
-    counter.value();
+  function value() public view returns (uint256) {
+    return counter.value();
   }
 
   function increase() public {
     counter.increase();
   }
+
   function decrease() public {
     counter.decrease();
   }
