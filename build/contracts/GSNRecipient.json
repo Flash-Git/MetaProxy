@@ -569,7 +569,7 @@
                     "name": "this",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 996,
+                    "referencedDeclaration": 997,
                     "src": "857:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_GSNRecipient_$269",
