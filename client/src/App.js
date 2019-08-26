@@ -20,7 +20,6 @@ function App() {
   let deployedNetwork = undefined;
   if (!counterInstance && context && context.networkId) {
     const deployedNetwork = proxyJSON.networks[context.networkId.toString()];
-    console.log(deployedNetwork.address);
     const instance = new context.lib.eth.Contract(
       proxyJSON.abi,
       deployedNetwork.address
@@ -31,11 +30,9 @@ function App() {
   const [count, setCount] = useState(0);
 
   const getCount = useCallback(async () => {
-    console.log(counterInstance);
     if (counterInstance) {
       // Get the value from the contract to prove it worked.
       const response = await counterInstance.methods.value().call();
-      console.log(response);
       // Update state with the result.
       setCount(response);
     }
