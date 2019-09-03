@@ -17,7 +17,6 @@ function App() {
   // load Counter Instance
   const [counterInstance, setCounterInstance] = useState(undefined);
 
-  let deployedNetwork = undefined;
   if (!counterInstance && context && context.networkId) {
     const deployedNetwork = proxyJSON.networks[context.networkId.toString()];
     const instance = new context.lib.eth.Contract(
@@ -31,9 +30,7 @@ function App() {
 
   const getCount = useCallback(async () => {
     if (counterInstance) {
-      // Get the value from the contract to prove it worked.
       const response = await counterInstance.methods.value().call();
-      // Update state with the result.
       setCount(response);
     }
   }, [counterInstance]);
@@ -41,8 +38,6 @@ function App() {
   useEffect(() => {
     getCount();
   }, [counterInstance, getCount]);
-
-  const { methods } = counterInstance || {};
 
   const increase = async () => {
     await counterInstance.methods.increase().send({ from: accounts[0] });
@@ -70,14 +65,10 @@ function App() {
           </div>
           <div>Counter Actions</div>
           <div>
-            <button onClick={() => increase(1)} size="small">
+            <button onClick={() => increase()} size="small">
               Increase Counter by 1
             </button>
-            <button
-              onClick={() => decrease(1)}
-              disabled={!(methods && methods.decrease)}
-              size="small"
-            >
+            <button onClick={() => decrease()} size="small">
               Decrease Counter by 1
             </button>
           </div>
